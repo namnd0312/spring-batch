@@ -1,6 +1,11 @@
 server:
   port: 8080
 spring:
+  batch:
+    jdbc:
+      initialize-schema: always
+    job:
+      enabled: false
   jpa:
     hibernate:
       ddl-auto: update
@@ -10,7 +15,7 @@ spring:
         format_sql: true
   datasource:
     #link localhost
-    url: jdbc:postgresql://localhost:5432/booking
+    url: jdbc:postgresql://localhost:5432/spring-batch
     username: postgres
     password: postgres
     platform: org.hibernate.dialect.PostgreSQLDialect
