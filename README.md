@@ -64,18 +64,12 @@ BATCH_STEP_EXECUTION_CONTEXT	Lưu thông tin context của step trong quá trìn
 
 
 🔎 Sự khác nhau giữa Jbatch_status và exit_status trong Spring Batch
-+------------------+--------------------------------------------+-----------------------------------------+
-| Đặc điểm         | batch_status                               | exit_status                             |
-+------------------+--------------------------------------------+-----------------------------------------+
+
+| Đặc điểm        | batch_status                               | exit_status                               |
+|-----------------|--------------------------------------------|-------------------------------------------|
 | Định nghĩa      | Trạng thái tổng thể của Job/Step           | Trạng thái kết thúc chi tiết của Job/Step |
-+------------------+--------------------------------------------+-----------------------------------------+
-| Lưu trong DB    | Cột `BATCH_STATUS` trong bảng Batch DB     | Cột `EXIT_CODE` trong bảng Batch DB    |
-+------------------+--------------------------------------------+-----------------------------------------+
-| Giá trị mặc định| STARTED, COMPLETED, FAILED,...            | Mặc định giống batch_status, có thể tùy chỉnh |
-+------------------+--------------------------------------------+-----------------------------------------+
-| Có thể ghi đè?  | ❌ Không, Spring Batch tự động quản lý    | ✅ Có, có thể đặt trạng thái tùy chỉnh |
-+------------------+--------------------------------------------+-----------------------------------------+
-| Công dụng       | Quản lý trạng thái chung của Job/Step     | Cung cấp chi tiết về kết quả thực thi  |
-+------------------+--------------------------------------------+-----------------------------------------+
-| Ví dụ           | COMPLETED, FAILED                         | COMPLETED_WITH_WARNINGS, DATABASE_ERROR |
-+------------------+--------------------------------------------+-----------------------------------------+
+| Lưu trong DB    | Cột `BATCH_STATUS` trong bảng Batch DB     | Cột `EXIT_CODE` trong bảng Batch DB       |
+| Giá trị mặc định| STARTED, COMPLETED, FAILED,...             | Mặc định giống batch_status, có thể tùy chỉnh |
+| Có thể ghi đè?  | ❌ Không, Spring Batch tự động quản lý     | ✅ Có, có thể đặt trạng thái tùy chỉnh   |
+| Công dụng       | Quản lý trạng thái chung của Job/Step      | Cung cấp chi tiết về kết quả thực thi    |
+| Ví dụ           | COMPLETED, FAILED                          | COMPLETED_WITH_WARNINGS, DATABASE_ERROR  |
