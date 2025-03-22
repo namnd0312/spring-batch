@@ -1,0 +1,16 @@
+server:
+  port: 8080
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    #link localhost
+    url: jdbc:postgresql://localhost:5432/booking
+    username: postgres
+    password: postgres
+    platform: org.hibernate.dialect.PostgreSQLDialect
