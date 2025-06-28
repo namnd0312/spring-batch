@@ -73,3 +73,14 @@ BATCH_STEP_EXECUTION_CONTEXT	Lưu thông tin context của step trong quá trìn
 | Có thể ghi đè?  | ❌ Không, Spring Batch tự động quản lý     | ✅ Có, có thể đặt trạng thái tùy chỉnh   |
 | Công dụng       | Quản lý trạng thái chung của Job/Step      | Cung cấp chi tiết về kết quả thực thi    |
 | Ví dụ           | COMPLETED, FAILED                          | COMPLETED_WITH_WARNINGS, DATABASE_ERROR  |
+
+
+
+- JOB đang chạy, service down, để chạy lại job
+  UPDATE BATCH_JOB_EXECUTION
+  SET STATUS = 'FAILED', END_TIME = now()
+  WHERE STATUS = 'STARTED';
+
+  UPDATE BATCH_STEP_EXECUTION
+  SET STATUS = 'FAILED', END_TIME = now()
+  WHERE STATUS = 'STARTED';

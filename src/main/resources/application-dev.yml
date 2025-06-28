@@ -9,13 +9,26 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: false
+    show-sql: true
     properties:
       hibernate:
-        format_sql: true
+        format_sql: false
   datasource:
     #link localhost
     url: jdbc:postgresql://localhost:5432/spring-batch
     username: postgres
     password: postgres
     platform: org.hibernate.dialect.PostgreSQLDialect
+    hikari:
+      maximum-pool-size: 100
+      minimum-idle: 100
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+
+logging:
+  level:
+    org:
+      springframework:
+        batch: DEBUG
+        batch.core: DEBUG

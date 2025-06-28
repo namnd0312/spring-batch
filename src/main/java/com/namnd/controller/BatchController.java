@@ -19,18 +19,20 @@ public class BatchController {
     @Autowired
     private JobLauncher jobLauncher;
 
+
     @Autowired
-    @Qualifier("firstJob")
-    private Job job;
+    private  Job salaryJob;
 
     @GetMapping("/run/{id}")
     void launchBatch(@PathVariable("id") String id) throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
-        JobParameters jobParameters = new JobParametersBuilder()
-                .addString("transactionId", id) // Thêm tham số duy nhất
+//        String batchId = "f0be5aaf-fcb6-42d2-aa81-04e429f5ebca";
+        JobParameters params = new JobParametersBuilder()
+//				.addLong("timestamp", System.currentTimeMillis()) // để tránh bị trùng job instance
+                .addString("batchId", id)
                 .toJobParameters();
 
-        JobExecution jobExecution = this.jobLauncher.run(job, jobParameters);
-        System.out.println(jobExecution.getStatus());
+        jobLauncher.run(salaryJob, params);
+
 
     }
 }
