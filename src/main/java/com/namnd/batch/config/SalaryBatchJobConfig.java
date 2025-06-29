@@ -50,7 +50,7 @@ public class SalaryBatchJobConfig {
     @Bean
     public Step processSalaryStep() {
         return stepBuilderFactory.get("processSalaryStep")
-                .<SalaryBatchDetail, SalaryBatchDetail>chunk(10)
+                .<SalaryBatchDetail, SalaryBatchDetail>chunk(20)
                 .reader(readerConfig.reader(null))
                 .processor(processor)
                 .writer(writer)
@@ -64,7 +64,7 @@ public class SalaryBatchJobConfig {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setThreadNamePrefix("batch-thread-");
         executor.setCorePoolSize(20); // số lượng core thread luôn tồn tại
-        executor.setMaxPoolSize(30);  // tối đa số thread đồng thời
+        executor.setMaxPoolSize(20);  // tối đa số thread đồng thời
         executor.setQueueCapacity(1000); // queue đợi
         executor.initialize();
         return executor;

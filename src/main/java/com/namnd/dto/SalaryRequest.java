@@ -12,4 +12,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class SalaryRequest {
     private String name;
+    private String job;
 }

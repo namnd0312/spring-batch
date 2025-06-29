@@ -33,7 +33,7 @@ public class SpringBatchApplication implements CommandLineRunner {
 		salaryBatch.setStatus(SalaryBatchStatus.PENDING);
 		SalaryBatch salaryBatchEntity = salaryBatchRepository.save(salaryBatch);
 
-		for (int i = 0;  i <5000; i++) {
+		for (int i = 0;  i <2000; i++) {
 			SalaryBatchDetail salaryBatchDetail = new SalaryBatchDetail();
 			salaryBatchDetail.setBatch(salaryBatchEntity);
 			salaryBatchDetail.setEmployeeId(String.valueOf(Math.random()));

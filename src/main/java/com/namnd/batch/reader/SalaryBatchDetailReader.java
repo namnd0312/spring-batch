@@ -30,7 +30,7 @@ public class SalaryBatchDetailReader {
         reader.setRepository(salaryBatchDetailRepository);
         reader.setMethodName("findByBatch_BatchId");
         reader.setArguments(Collections.singletonList(batchId));
-        reader.setPageSize(100);
+        reader.setPageSize(20);
         reader.setSort(Collections.singletonMap("id", Sort.Direction.ASC));
         return reader;
     }

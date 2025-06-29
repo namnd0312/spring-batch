@@ -6,6 +6,9 @@ import com.namnd.model.SalaryBatchStatus;
 import com.namnd.repository.SalaryBatchDetailRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.batch.item.ItemWriter;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.ResourceAccessException;
@@ -13,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 @Component
 @Log4j2
@@ -37,13 +41,19 @@ public class SalaryBatchDetailWriter implements ItemWriter<SalaryBatchDetail> {
             }
 
             int retryCount = detail.getRetry() != null ? detail.getRetry() : 0;
-
+            detail.setStatus(SalaryBatchStatus.PROCESSING);
             while (retryCount < 3) {
                 try {
-                    String url = "http://localhost:8089/api/salary";
-                    SalaryRequest request = new SalaryRequest("hi");
+                    String url = "https://reqres.in/api/users";
+                    SalaryRequest request = new SalaryRequest("hi", "22");
 
-                    ResponseEntity<String> response = restTemplate.postForEntity(url, request, String.class);
+                    HttpHeaders headers = new HttpHeaders();
+                    headers.setContentType(MediaType.APPLICATION_JSON);
+                    headers.set("x-api-key", "reqres-free-v1");
+
+                    HttpEntity<SalaryRequest> entity = new HttpEntity<>(request, headers);
+
+                    ResponseEntity<Objects> response = restTemplate.postForEntity(url, entity, Objects.class);
 
                     if (response.getStatusCode().is2xxSuccessful()) {
                         detail.setStatus(SalaryBatchStatus.SUCCESS);
@@ -65,6 +75,7 @@ public class SalaryBatchDetailWriter implements ItemWriter<SalaryBatchDetail> {
                     log.error("Exception: " + e.getMessage());
                     detail.setErrorMessage("Exception: " + e.getMessage());
                     detail.setStatus(SalaryBatchStatus.ERROR);
+                    break;
                 }
             }
 

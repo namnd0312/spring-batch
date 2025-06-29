@@ -20,8 +20,8 @@ spring:
     password: postgres
     platform: org.hibernate.dialect.PostgreSQLDialect
     hikari:
-      maximum-pool-size: 100
-      minimum-idle: 100
+      maximum-pool-size: 30
+      minimum-idle: 30
       idle-timeout: 30000
       max-lifetime: 1800000
       connection-timeout: 30000
