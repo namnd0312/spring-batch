@@ -84,3 +84,9 @@ BATCH_STEP_EXECUTION_CONTEXT	Lưu thông tin context của step trong quá trìn
   UPDATE BATCH_STEP_EXECUTION
   SET STATUS = 'FAILED', END_TIME = now()
   WHERE STATUS = 'STARTED';
+
+- Chạy docker
+  mvn clean install -DskipTests
+  docker build -t spring-batch-app .
+  docker run --name spring-batch-app-container --network elk_elk -p 8080:8080 -v /Users/admin/Desktop/Common/ELK:/opt/log/app spring-batch-app
+

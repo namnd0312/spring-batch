@@ -14,18 +14,7 @@
 	<name>spring-batch</name>
 	<description>spring-batch</description>
 	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
+
 	<properties>
 		<java.version>11</java.version>
 	</properties>
